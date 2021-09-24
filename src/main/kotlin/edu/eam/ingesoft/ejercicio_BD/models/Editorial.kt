@@ -18,7 +18,4 @@ data class Editorial(
     @Column (name="nombre_editorial")
     val nombre_editorial: String
 
-
-
-
 ):Serializable
