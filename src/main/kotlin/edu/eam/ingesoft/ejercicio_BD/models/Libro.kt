@@ -9,15 +9,15 @@ data class Libro(
 
     @Id
     @Column(name = "codigo_libro")
-    val codigo_librp:String,
+    val codigo_libro:String,
 
     @Column(name = "isbn_libro")
-    val isbn_libro: String,
+    var isbn_libro: String,
 
     @Column(name = "nombre_libro")
-    val nombre_libro:String,
+    var nombre_libro:String,
 
     @ManyToOne
     @JoinColumn(name = "id_editorial")
-    val id_editorial: Editorial
+    var id_editorial: Editorial
 ):Serializable

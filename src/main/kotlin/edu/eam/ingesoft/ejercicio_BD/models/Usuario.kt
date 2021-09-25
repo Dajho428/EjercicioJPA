@@ -15,8 +15,8 @@ data class Usuario(
     val user_identification: String,
 
     @Column(name = "apellido_usuario")
-    val apellido_usuario:String,
+    var apellido_usuario:String,
 
     @Column(name = "nombre_usuario")
-    val nombre_usuario: String
+    var nombre_usuario: String
 ):Serializable

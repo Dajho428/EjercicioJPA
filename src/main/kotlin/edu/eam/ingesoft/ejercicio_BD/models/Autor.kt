@@ -15,10 +15,10 @@ data class Autor(
     val codigo_autor:Long,
 
     @Column(name="apellido")
-    val apellido: String,
+    var apellido: String,
 
     @Column(name = "nombre")
-    val nombre : String
+    var nombre : String
 
 ):Serializable
 

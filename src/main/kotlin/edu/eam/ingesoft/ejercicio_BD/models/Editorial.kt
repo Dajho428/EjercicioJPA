@@ -16,6 +16,6 @@ data class Editorial(
     val codigo_editorial: Long,
 
     @Column (name="nombre_editorial")
-    val nombre_editorial: String
+    var nombre_editorial: String
 
 ):Serializable

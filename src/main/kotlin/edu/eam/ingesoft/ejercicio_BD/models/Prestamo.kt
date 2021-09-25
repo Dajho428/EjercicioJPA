@@ -13,7 +13,7 @@ data class Prestamo(
     val id:Long,
 
     @Column(name = "fecha_prestamo")
-    val fecha_prestamo: Date,
+    var fecha_prestamo: Date,
 
     @ManyToOne
     @JoinColumn(name = "id_libro")
