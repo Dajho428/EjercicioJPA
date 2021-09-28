@@ -6,21 +6,21 @@ import javax.persistence.*
 
 @Entity
 @Table (name = "tbl_prestamos")
-data class Prestamo(
+data class Borrow(
 
     @Id
     @Column(name = "id")
     val id:Long,
 
     @Column(name = "fecha_prestamo")
-    var fecha_prestamo: Date,
+    var dateTime: Date,
 
     @ManyToOne
     @JoinColumn(name = "id_libro")
-    val id_libro:Libro,
+    val book:Book,
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
-    val id_usuario:Usuario
+    val user:User
 
 ):Serializable

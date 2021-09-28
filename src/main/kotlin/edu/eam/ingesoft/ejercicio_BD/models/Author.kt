@@ -6,16 +6,19 @@ import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
 
-
 @Entity
-@Table(name="tbl_editoriales")
-data class Editorial(
+@Table(name="tbl_autor")
+data class Author(
 
     @Id
-    @Column (name="codigo_editorial")
-    val codigo_editorial: Long,
+    @Column (name = "codigo_autor")
+    val id:Long,
 
-    @Column (name="nombre_editorial")
-    var nombre_editorial: String
+    @Column(name="apellido")
+    var lastName: String,
+
+    @Column(name = "nombre")
+    var name : String
 
 ):Serializable
+
