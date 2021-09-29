@@ -64,17 +64,23 @@ class TestAuthorBookRepository {
     @Test
     fun testUpdate(){
         val publisher=Publisher("01","Norma")
+        entityManager.persist(publisher)
         val book=Book("0001A","0001","ABCD",publisher)
+        val book2=Book("0002A","0002","qwer",publisher)
+        entityManager.persist(book)
+        entityManager.persist(book2)
         val author=Author(1L,"Hernandez","Jhonatan")
+        entityManager.persist(author)
         entityManager.persist(AuthorBook(22L,author,book))
-
+        entityManager.flush()
 
         val authorBook = entityManager.find(AuthorBook::class.java, 22L)
-        authorBook.author.name = "David"
+        authorBook.book=book2
+        entityManager.clear()
         authorBookRepository.update(authorBook)
 
         val authorBookToAssert = entityManager.find(AuthorBook::class.java, 22L)
-        Assertions.assertEquals("David", authorBookToAssert.author.name)
+        Assertions.assertEquals("qwer", authorBookToAssert.book.name)
         println(authorBookToAssert)
     }
 
@@ -104,10 +110,28 @@ class TestAuthorBookRepository {
         entityManager.persist(author)
         entityManager.persist(AuthorBook(1L,author,book1))
         entityManager.persist(AuthorBook(2L,author,book2))
-        val list=authorBookRepository.findAuthorBook("01")
+        val list=authorBookRepository.findAuthorBook("0001A")
+        Assertions.assertEquals(1,list.size)
+        println(list[0].name)
+
+
+    }
+
+    @Test
+    fun testFindBookByAuthor(){
+        val publisher=Publisher("01","Norma")
+        val book1=Book("0001A","0001","ABCD",publisher)
+        val book2=Book("0002B","0002","EFGH",publisher)
+        val author=Author(1L,"Hernandez","Jhonatan")
+        entityManager.persist(publisher)
+        entityManager.persist(book1)
+        entityManager.persist(book2)
+        entityManager.persist(author)
+        entityManager.persist(AuthorBook(1L,author,book1))
+        entityManager.persist(AuthorBook(2L,author,book2))
+        val list=authorBookRepository.findBookByAuthor(1L)
         Assertions.assertEquals(2,list.size)
         println(list[0].name)
         println(list[1].name)
-
     }
 }

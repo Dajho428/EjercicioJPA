@@ -13,9 +13,9 @@ data class AuthorBook(
 
     @ManyToOne
     @JoinColumn(name = "id_autor")
-    val author: Author,
+    var author: Author,
 
     @ManyToOne
     @JoinColumn(name = "id_libro")
-    val book:Book
+    var book:Book
 ):Serializable

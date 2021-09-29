@@ -31,7 +31,7 @@ class TestBorrowRepository {
 
     @Test
     fun testCreate(){
-        val date = Date(2021,)
+        val date = Date(2021,6,15,)
         val publisher= Publisher("01","Norma")
         val book=Book("0001","001A","ABCD",publisher)
         val user=User("01","Hernandez","Jhonatan")
@@ -47,7 +47,7 @@ class TestBorrowRepository {
 
     @Test
     fun testFind(){
-        val date = Date(2021,)
+        val date = Date(2021,6,15)
         val publisher= Publisher("01","Norma")
         val book=Book("0001","001A","ABCD",publisher)
         val user=User("01","Hernandez","Jhonatan")
@@ -66,7 +66,7 @@ class TestBorrowRepository {
 
     @Test
     fun testUpdate(){
-        val date = Date(2021,)
+        val date = Date(2021,6,15,)
         val publisher= Publisher("01","Norma")
         val book=Book("0001","001A","ABCD",publisher)
         val user=User("01","Hernandez","Jhonatan")
@@ -80,7 +80,7 @@ class TestBorrowRepository {
 
     @Test
     fun testDelete(){
-        val date = Date(2021,)
+        val date = Date(2021,6,15,)
         val publisher= Publisher("01","Norma")
         val book=Book("0001","001A","ABCD",publisher)
         val user=User("01","Hernandez","Jhonatan")
@@ -92,7 +92,7 @@ class TestBorrowRepository {
 
     @Test
     fun testFindBorrowByUser(){
-        val date = Date(2021,)
+        val date = Date(2021,6,15,)
         val publisher= Publisher("01","Norma")
         val book1=Book("0001","001A","ABCD",publisher)
         val book2=Book("0002","002B","EFGH",publisher)
@@ -107,5 +107,24 @@ class TestBorrowRepository {
         Assertions.assertEquals(2,list.size)
         println(list[0].book.name)
         println(list[1].book.name)
+    }
+
+    @Test
+    fun testFindBorrowByBook(){
+        val date = Date(2021,6,15,)
+        val publisher= Publisher("01","Norma")
+        val book1=Book("01","001A","ABCD",publisher)
+        val user=User("01","Hernandez","Jhonatan")
+        val user2=User("02","Herrera","David")
+        entityManager.persist(publisher)
+        entityManager.persist(book1)
+        entityManager.persist(user2)
+        entityManager.persist(user)
+        entityManager.persist(Borrow(1L,date,book1,user))
+        entityManager.persist(Borrow(2L,date,book1,user2))
+        val list=borrowRepository.findBorrowByBook("02")
+        Assertions.assertEquals(2,list.size)
+        println(list[0].user.name)
+        println(list[1].user.name)
     }
 }
