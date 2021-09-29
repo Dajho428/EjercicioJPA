@@ -122,7 +122,7 @@ class TestBorrowRepository {
         entityManager.persist(user)
         entityManager.persist(Borrow(1L,date,book1,user))
         entityManager.persist(Borrow(2L,date,book1,user2))
-        val list=borrowRepository.findBorrowByBook("02")
+        val list=borrowRepository.findBorrowByBook("01")
         Assertions.assertEquals(2,list.size)
         println(list[0].user.name)
         println(list[1].user.name)
