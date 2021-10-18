@@ -17,7 +17,11 @@ data class Book(
     @Column(name = "nombre_libro")
     var name:String,
 
+     @Column(name= "cantidad")
+     var stock: Int,
+
     @ManyToOne
     @JoinColumn(name = "id_editorial")
     var publisher: Publisher
+
 ):Serializable

@@ -38,7 +38,6 @@ class TestAuthorBookRepository {
         Assertions.assertEquals("Jhonatan",authorBook.author.name)
         Assertions.assertEquals("ABCD",authorBook.book.name)
         Assertions.assertEquals("Norma",authorBook.book.publisher.name)
-
     }
 
     @Test

@@ -7,18 +7,18 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name="tbl_autor")
+@Table(name = "tbl_autor")
 data class Author(
 
     @Id
-    @Column (name = "codigo_autor")
-    val id:Long,
+    @Column(name = "codigo_autor")
+    val id: Long,
 
-    @Column(name="apellido")
+    @Column(name = "apellido")
     var lastName: String,
 
     @Column(name = "nombre")
-    var name : String
+    var name: String
 
-):Serializable
+) : Serializable
 
