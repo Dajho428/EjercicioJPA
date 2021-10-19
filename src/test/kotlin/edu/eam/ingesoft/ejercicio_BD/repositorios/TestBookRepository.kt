@@ -28,7 +28,7 @@ class TestBookRepository {
     @Test
     fun testCreate(){
         val publisher= Publisher("01","Norma")
-        bookRepository.create(Book("0001","001A","ABCD",publisher))
+        bookRepository.create(Book("0001","001A","ABCD",10,publisher))
         val book=entityManager.find(Book::class.java,"0001")
         println(book)
         Assertions.assertNotNull(book)
@@ -40,7 +40,7 @@ class TestBookRepository {
     @Test
     fun testFind(){
         val publisher= Publisher("01","Norma")
-        entityManager.persist(Book("0001","001A","ABCD",publisher))
+        entityManager.persist(Book("0001","001A","ABCD",10,publisher))
         val book=bookRepository.find("0001")
         if (book!=null){
             Assertions.assertNotNull(book)
@@ -55,7 +55,7 @@ class TestBookRepository {
     @Test
     fun testUpdate(){
         val publisher= Publisher("01","Norma")
-        entityManager.persist(Book("0001","001A","ABCD",publisher))
+        entityManager.persist(Book("0001","001A","ABCD",10,publisher))
 
 
         val book = entityManager.find(Book::class.java, "0001")
@@ -73,7 +73,7 @@ class TestBookRepository {
     @Test
     fun testDelete(){
         val publisher=Publisher("01","Norma")
-        entityManager.persist(Book("0001","001A","ABCD",publisher))
+        entityManager.persist(Book("0001","001A","ABCD",10,publisher))
 
         bookRepository.delete("0001")
 
@@ -86,8 +86,8 @@ class TestBookRepository {
     fun testFindBookByPublisher(){
         val publisher1=Publisher("01","Norma")
         entityManager.persist(publisher1)
-        entityManager.persist(Book("001","001A","ABCD",publisher1))
-        entityManager.persist(Book("002","002B","EFGH",publisher1))
+        entityManager.persist(Book("001","001A","ABCD",10,publisher1))
+        entityManager.persist(Book("002","002B","EFGH",10,publisher1))
 
         val list= bookRepository.findBookByPublisher("01")
         println(list[0].name)

@@ -33,7 +33,7 @@ class TestBorrowRepository {
     fun testCreate(){
         val date = Date(2021,6,15,)
         val publisher= Publisher("01","Norma")
-        val book=Book("0001","001A","ABCD",publisher)
+        val book=Book("0001","001A","ABCD",10,publisher)
         val user=User("01","Hernandez","Jhonatan")
         borrowRepository.create(Borrow(11L,date,book,user))
         val borrow=entityManager.find(Borrow::class.java,11L)
@@ -49,7 +49,7 @@ class TestBorrowRepository {
     fun testFind(){
         val date = Date(2021,6,15)
         val publisher= Publisher("01","Norma")
-        val book=Book("0001","001A","ABCD",publisher)
+        val book=Book("0001","001A","ABCD",10,publisher)
         val user=User("01","Hernandez","Jhonatan")
         entityManager.persist(Borrow(11L,date,book,user))
         val borrow=borrowRepository.find(11L)
@@ -68,7 +68,7 @@ class TestBorrowRepository {
     fun testUpdate(){
         val date = Date(2021,6,15,)
         val publisher= Publisher("01","Norma")
-        val book=Book("0001","001A","ABCD",publisher)
+        val book=Book("0001","001A","ABCD",10,publisher)
         val user=User("01","Hernandez","Jhonatan")
         entityManager.persist(Borrow(11L,date,book,user))
         val borrow=entityManager.find(Borrow::class.java,11L)
@@ -82,7 +82,7 @@ class TestBorrowRepository {
     fun testDelete(){
         val date = Date(2021,6,15,)
         val publisher= Publisher("01","Norma")
-        val book=Book("0001","001A","ABCD",publisher)
+        val book=Book("0001","001A","ABCD",10,publisher)
         val user=User("01","Hernandez","Jhonatan")
         entityManager.persist(Borrow(11L,date,book,user))
         borrowRepository.delete(11L)
@@ -94,8 +94,8 @@ class TestBorrowRepository {
     fun testFindBorrowByUser(){
         val date = Date(2021,6,15,)
         val publisher= Publisher("01","Norma")
-        val book1=Book("0001","001A","ABCD",publisher)
-        val book2=Book("0002","002B","EFGH",publisher)
+        val book1=Book("0001","001A","ABCD",10,publisher)
+        val book2=Book("0002","002B","EFGH",10,publisher)
         val user=User("01","Hernandez","Jhonatan")
         entityManager.persist(publisher)
         entityManager.persist(book1)
@@ -113,7 +113,7 @@ class TestBorrowRepository {
     fun testFindBorrowByBook(){
         val date = Date(2021,6,15,)
         val publisher= Publisher("01","Norma")
-        val book1=Book("01","001A","ABCD",publisher)
+        val book1=Book("01","001A","ABCD",10,publisher)
         val user=User("01","Hernandez","Jhonatan")
         val user2=User("02","Herrera","David")
         entityManager.persist(publisher)

@@ -17,12 +17,12 @@ class BookRepository {
     lateinit var em: EntityManager
 
 
-    fun create(book: Book){
+    fun create(book: Book) {
         em.persist(book)
     }
 
-    fun find(code_book:String): Book?{
-        return em.find(Book::class.java,code_book)
+    fun find(code_book: String): Book? {
+        return em.find(Book::class.java, code_book)
     }
 
     fun update(book: Book) {
@@ -39,13 +39,17 @@ class BookRepository {
 
     }
 
-    fun findBookByPublisher (code_publisher: String):List<Book>{
+    fun findBookByPublisher(code_publisher: String): List<Book> {
         val query = em.createQuery("SELECT book FROM Book book WHERE book.publisher.code = : code_publisher")
-        query.setParameter("code_publisher",code_publisher)
+        query.setParameter("code_publisher", code_publisher)
         return query.resultList as List<Book>
     }
 
-
+    fun findBookByName(nombre_libro: String): Book {
+        val query = em.createQuery("SELECT book FROM Book book WHERE book.name = : nombre_libro")
+        query.setParameter("nombre_libro", nombre_libro)
+        return query.resultList[0] as Book
+    }
 
 
 }
