@@ -1,8 +1,8 @@
 package edu.eam.ingesoft.ejercicio_BD.repositorios
 
-import edu.eam.ingesoft.ejercicio_BD.model.Author
-import edu.eam.ingesoft.ejercicio_BD.model.Book
-import edu.eam.ingesoft.ejercicio_BD.model.AuthorBook
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Author
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Book
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.AuthorBook
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -44,7 +44,7 @@ class AuthorBookRepository {
         return query.resultList as List<Book>
     }
 
-    fun findAuthorBook(code_book: String): List<Author> {
+    fun findAuthorBook(code_book: String?): List<Author> {
         val query =
             em.createQuery("SELECT authorBook.author FROM AuthorBook authorBook WHERE authorBook.book.code = : code_book")
         query.setParameter("code_book", code_book)

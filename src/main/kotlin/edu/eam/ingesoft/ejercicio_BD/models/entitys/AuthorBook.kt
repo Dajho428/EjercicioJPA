@@ -1,4 +1,4 @@
-package edu.eam.ingesoft.ejercicio_BD.model
+package edu.eam.ingesoft.ejercicio_BD.models.entitys
 
 import java.io.Serializable
 import javax.persistence.*
@@ -17,5 +17,5 @@ data class AuthorBook(
 
     @ManyToOne
     @JoinColumn(name = "id_libro")
-    var book:Book
+    var book: Book
 ):Serializable

@@ -1,4 +1,4 @@
-package edu.eam.ingesoft.ejercicio_BD.model
+package edu.eam.ingesoft.ejercicio_BD.models.entitys
 
 import java.io.Serializable
 import javax.persistence.Column

@@ -1,4 +1,4 @@
-package edu.eam.ingesoft.ejercicio_BD.model
+package edu.eam.ingesoft.ejercicio_BD.models.entitys
 
 import java.io.Serializable
 import java.util.*
@@ -17,10 +17,10 @@ data class Borrow(
 
     @ManyToOne
     @JoinColumn(name = "id_libro")
-    val book:Book,
+    val book: Book,
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
-    val user:User
+    val user: User?,
 
 ):Serializable

@@ -1,7 +1,7 @@
 package edu.eam.ingesoft.ejercicio_BD.services
 
 import edu.eam.ingesoft.ejercicio_BD.exceptions.BusinessException
-import edu.eam.ingesoft.ejercicio_BD.model.Author
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Author
 import edu.eam.ingesoft.ejercicio_BD.repositorios.AuthorRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

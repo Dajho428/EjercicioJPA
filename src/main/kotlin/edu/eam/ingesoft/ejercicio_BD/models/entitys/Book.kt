@@ -1,4 +1,4 @@
-package edu.eam.ingesoft.ejercicio_BD.model
+package edu.eam.ingesoft.ejercicio_BD.models.entitys
 
 import java.io.Serializable
 import javax.persistence.*
@@ -9,7 +9,7 @@ data class Book(
 
     @Id
     @Column(name = "codigo_libro")
-    val code:String,
+    var code:String?="",
 
     @Column(name = "isbn_libro")
     var isbn_libro: String,
@@ -22,6 +22,6 @@ data class Book(
 
     @ManyToOne
     @JoinColumn(name = "id_editorial")
-    var publisher: Publisher
+    var publisher: Publisher?
 
 ):Serializable

@@ -1,6 +1,6 @@
 package edu.eam.ingesoft.ejercicio_BD.repositorios
 
-import edu.eam.ingesoft.ejercicio_BD.model.Book
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Book
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -21,7 +21,7 @@ class BookRepository {
         em.persist(book)
     }
 
-    fun find(code_book: String): Book? {
+    fun find(code_book: String?): Book? {
         return em.find(Book::class.java, code_book)
     }
 
@@ -45,10 +45,10 @@ class BookRepository {
         return query.resultList as List<Book>
     }
 
-    fun findBookByName(nombre_libro: String): Book {
+    fun findBookByName(nombre_libro: String?): List<Book> {
         val query = em.createQuery("SELECT book FROM Book book WHERE book.name = : nombre_libro")
         query.setParameter("nombre_libro", nombre_libro)
-        return query.resultList[0] as Book
+        return query.resultList as List<Book>
     }
 
 

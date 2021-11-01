@@ -1,9 +1,9 @@
 package edu.eam.ingesoft.ejercicio_BD.repositorios
 
-import edu.eam.ingesoft.ejercicio_BD.model.Author
-import edu.eam.ingesoft.ejercicio_BD.model.Publisher
-import edu.eam.ingesoft.ejercicio_BD.model.Book
-import edu.eam.ingesoft.ejercicio_BD.model.AuthorBook
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Author
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Publisher
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Book
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.AuthorBook
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,22 +29,22 @@ class TestAuthorBookRepository {
 
     @Test
     fun testCreate(){
-        val publisher=Publisher("01","Norma")
-        val book=Book("0001A","0001","ABCD",10,publisher)
-        val author=Author(1L,"Hernandez","Jhonatan")
+        val publisher= Publisher("01","Norma")
+        val book= Book("0001A","0001","ABCD",10,publisher)
+        val author= Author(1L,"Hernandez","Jhonatan")
         authorBookRepository.create(AuthorBook(22L,author,book))
         val authorBook=entityManager.find(AuthorBook::class.java,22L)
         Assertions.assertNotNull(authorBook)
         Assertions.assertEquals("Jhonatan",authorBook.author.name)
         Assertions.assertEquals("ABCD",authorBook.book.name)
-        Assertions.assertEquals("Norma",authorBook.book.publisher.name)
+        Assertions.assertEquals("Norma",authorBook.book.publisher?.name)
     }
 
     @Test
     fun testFind(){
-        val publisher=Publisher("01","Norma")
-        val book=Book("0001A","0001","ABCD",10,publisher)
-        val author=Author(1L,"Hernandez","Jhonatan")
+        val publisher= Publisher("01","Norma")
+        val book= Book("0001A","0001","ABCD",10,publisher)
+        val author= Author(1L,"Hernandez","Jhonatan")
         entityManager.persist(AuthorBook(22L,author,book))
 
         val authorBook = authorBookRepository.find(22L)
@@ -52,7 +52,7 @@ class TestAuthorBookRepository {
             Assertions.assertNotNull(authorBook)
             Assertions.assertEquals("Jhonatan", authorBook?.author.name)
             Assertions.assertEquals("ABCD",authorBook?.book.name)
-            Assertions.assertEquals("Norma",authorBook?.book.publisher.name)
+            Assertions.assertEquals("Norma",authorBook?.book.publisher?.name)
             println(author)
         }else{
             println("no se encuentra el autor con ese codigo")
@@ -62,13 +62,13 @@ class TestAuthorBookRepository {
 
     @Test
     fun testUpdate(){
-        val publisher=Publisher("01","Norma")
+        val publisher= Publisher("01","Norma")
         entityManager.persist(publisher)
-        val book=Book("0001A","0001","ABCD",10,publisher)
-        val book2=Book("0002A","0002","qwer",10,publisher)
+        val book= Book("0001A","0001","ABCD",10,publisher)
+        val book2= Book("0002A","0002","qwer",10,publisher)
         entityManager.persist(book)
         entityManager.persist(book2)
-        val author=Author(1L,"Hernandez","Jhonatan")
+        val author= Author(1L,"Hernandez","Jhonatan")
         entityManager.persist(author)
         entityManager.persist(AuthorBook(22L,author,book))
         entityManager.flush()
@@ -85,9 +85,9 @@ class TestAuthorBookRepository {
 
     @Test
     fun testDelete(){
-        val publisher=Publisher("01","Norma")
-        val book=Book("0001A","0001","ABCD",10,publisher)
-        val author=Author(1L,"Hernandez","Jhonatan")
+        val publisher= Publisher("01","Norma")
+        val book= Book("0001A","0001","ABCD",10,publisher)
+        val author= Author(1L,"Hernandez","Jhonatan")
         entityManager.persist(AuthorBook(22L,author,book))
         println(authorBookRepository.find(22L))
         authorBookRepository.delete(22L)
@@ -99,10 +99,10 @@ class TestAuthorBookRepository {
 
     @Test
     fun testFindAuthorBook(){
-        val publisher=Publisher("01","Norma")
-        val book1=Book("0001A","0001","ABCD",10,publisher)
-        val book2=Book("0002B","0002","EFGH",10,publisher)
-        val author=Author(1L,"Hernandez","Jhonatan")
+        val publisher= Publisher("01","Norma")
+        val book1= Book("0001A","0001","ABCD",10,publisher)
+        val book2= Book("0002B","0002","EFGH",10,publisher)
+        val author= Author(1L,"Hernandez","Jhonatan")
         entityManager.persist(publisher)
         entityManager.persist(book1)
         entityManager.persist(book2)
@@ -118,10 +118,10 @@ class TestAuthorBookRepository {
 
     @Test
     fun testFindBookByAuthor(){
-        val publisher=Publisher("01","Norma")
-        val book1=Book("0001A","0001","ABCD",10,publisher)
-        val book2=Book("0002B","0002","EFGH",10,publisher)
-        val author=Author(1L,"Hernandez","Jhonatan")
+        val publisher= Publisher("01","Norma")
+        val book1= Book("0001A","0001","ABCD",10,publisher)
+        val book2= Book("0002B","0002","EFGH",10,publisher)
+        val author= Author(1L,"Hernandez","Jhonatan")
         entityManager.persist(publisher)
         entityManager.persist(book1)
         entityManager.persist(book2)

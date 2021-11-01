@@ -1,6 +1,6 @@
 package edu.eam.ingesoft.ejercicio_BD.repositorios
 
-import edu.eam.ingesoft.ejercicio_BD.model.Publisher
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -18,7 +18,7 @@ class PublisherRepository {
         em.persist(publisher)
     }
 
-    fun find(code_publisher: String):Publisher?{
+    fun find(code_publisher: String): Publisher?{
         return em.find(Publisher::class.java,code_publisher)
     }
 

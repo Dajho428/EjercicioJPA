@@ -1,6 +1,6 @@
 package edu.eam.ingesoft.ejercicio_BD.repositorios
 
-import edu.eam.ingesoft.ejercicio_BD.model.Author
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Author
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

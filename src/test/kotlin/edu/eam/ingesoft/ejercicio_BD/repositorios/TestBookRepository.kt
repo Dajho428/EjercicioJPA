@@ -1,7 +1,7 @@
 package edu.eam.ingesoft.ejercicio_BD.repositorios
 
-import edu.eam.ingesoft.ejercicio_BD.model.Publisher
-import edu.eam.ingesoft.ejercicio_BD.model.Book
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Publisher
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Book
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,7 +33,7 @@ class TestBookRepository {
         println(book)
         Assertions.assertNotNull(book)
         Assertions.assertEquals("ABCD",book.name)
-        Assertions.assertEquals("Norma",book.publisher.name)
+        Assertions.assertEquals("Norma",book.publisher?.name)
 
     }
 
@@ -45,7 +45,7 @@ class TestBookRepository {
         if (book!=null){
             Assertions.assertNotNull(book)
             Assertions.assertEquals("ABCD",book?.name)
-            Assertions.assertEquals("Norma",book?.publisher.name)
+            Assertions.assertEquals("Norma",book?.publisher?.name)
             println(book)
         }else{
             println("no se encuentra el libro con ese codigo")
@@ -61,18 +61,18 @@ class TestBookRepository {
         val book = entityManager.find(Book::class.java, "0001")
         println(book)
         book.name = "abcd"
-        book.publisher.name="Santillana"
+        book.publisher?.name="Santillana"
         bookRepository.update(book)
 
         val bookToAssert = entityManager.find(Book::class.java, "0001")
         Assertions.assertEquals("abcd", bookToAssert.name)
-        Assertions.assertEquals("Santillana",bookToAssert.publisher.name)
+        Assertions.assertEquals("Santillana",bookToAssert.publisher?.name)
         println(bookToAssert)
     }
 
     @Test
     fun testDelete(){
-        val publisher=Publisher("01","Norma")
+        val publisher= Publisher("01","Norma")
         entityManager.persist(Book("0001","001A","ABCD",10,publisher))
 
         bookRepository.delete("0001")
@@ -84,7 +84,7 @@ class TestBookRepository {
 
     @Test
     fun testFindBookByPublisher(){
-        val publisher1=Publisher("01","Norma")
+        val publisher1= Publisher("01","Norma")
         entityManager.persist(publisher1)
         entityManager.persist(Book("001","001A","ABCD",10,publisher1))
         entityManager.persist(Book("002","002B","EFGH",10,publisher1))

@@ -1,6 +1,6 @@
 package edu.eam.ingesoft.ejercicio_BD.repositorios
 
-import edu.eam.ingesoft.ejercicio_BD.model.Author
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Author
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -17,7 +17,7 @@ class AuthorRepository {
         em.persist(author)
     }
 
-    fun find(id_author: Long):Author?{
+    fun find(id_author: Long): Author?{
         return em.find(Author::class.java,id_author)
     }
 
