@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
 plugins {
 	id("org.springframework.boot") version "2.5.4"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -10,7 +11,7 @@ plugins {
 
 group = "edu.eam.ingesoft"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_15
 
 repositories {
 	mavenCentral()
@@ -30,6 +31,12 @@ tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "11"
+	}
+}
+tasks.getByName<Jar>("jar"){
+	enabled=false
+	manifest{
+			attributes["Main-Class"]="edu.eam.ingesoft.ejercicio_BD.EjercicioBdApplication"
 	}
 }
 
