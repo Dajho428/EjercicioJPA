@@ -1,4 +1,4 @@
-package edu.eam.ingesoft.ejercicio_BD.model
+package edu.eam.ingesoft.ejercicio_BD.models.entitys
 
 import java.io.Serializable
 import javax.persistence.Column
@@ -8,17 +8,14 @@ import javax.persistence.Table
 
 
 @Entity
-@Table(name="tbl_editoriales")
-data class Editorial(
+@Table(name="tbl_editorial")
+data class Publisher(
 
     @Id
     @Column (name="codigo_editorial")
-    val codigo_editorial: Long,
+    val code: String,
 
     @Column (name="nombre_editorial")
-    val nombre_editorial: String
-
-
-
+    var name: String
 
 ):Serializable
