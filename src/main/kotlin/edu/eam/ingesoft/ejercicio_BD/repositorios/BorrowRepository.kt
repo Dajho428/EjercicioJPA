@@ -1,5 +1,6 @@
 package edu.eam.ingesoft.ejercicio_BD.repositorios
 
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Book
 import edu.eam.ingesoft.ejercicio_BD.models.entitys.Borrow
 import edu.eam.ingesoft.ejercicio_BD.models.entitys.User
 import org.springframework.beans.factory.annotation.Autowired
@@ -54,5 +55,9 @@ class BorrowRepository {
         return query.resultList as List<User>
     }
 
-
+    fun findBooksByUser(id_user: String): List<Book>{
+        val query = em.createQuery("SELECT borrow.book FROM Borrow borrow WHERE borrow.user.identification = : id_user")
+        query.setParameter("id_user",id_user)
+        return query.resultList as List<Book>
+    }
 }

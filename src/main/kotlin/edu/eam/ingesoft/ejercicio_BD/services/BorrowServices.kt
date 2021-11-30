@@ -1,6 +1,7 @@
 package edu.eam.ingesoft.ejercicio_BD.services
 
 import edu.eam.ingesoft.ejercicio_BD.exceptions.BusinessException
+import edu.eam.ingesoft.ejercicio_BD.models.entitys.Book
 import edu.eam.ingesoft.ejercicio_BD.models.entitys.Borrow
 import edu.eam.ingesoft.ejercicio_BD.models.entitys.User
 import edu.eam.ingesoft.ejercicio_BD.models.request.BorrowRequestCreate
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.persistence.EntityManager
+import kotlin.reflect.jvm.internal.impl.load.java.BuiltinMethodsWithSpecialGenericSignature
 
 @Service
 class BorrowServices {
@@ -59,9 +61,14 @@ class BorrowServices {
             throw BusinessException("The book doesn't exist")
         }
         return borrowRepository.findUserByBook(id_book)
-
-
     }
 
+    fun findBooksByUser(id_user: String): List<Book>{
+        val user = userRepository.find(id_user)
+        if(user==null){
+            throw BusinessException ("The User doesn't exist")
+        }
+        return borrowRepository.findBooksByUser(id_user)
+    }
 
 }
